@@ -48,3 +48,4 @@ def spellcheck(word, analyser):
     else:
         return True
 
+__all__ = ['spellcheck', 'getSuggestions']
