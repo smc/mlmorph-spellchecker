@@ -1,5 +1,5 @@
 Spellchecker based on Malayalam morphology analyser
-==================================================
+===================================================
 
 This is a Spellchcker for Malayalam language based on `Malayalam morphology analyser - mlmorph`_.
 
