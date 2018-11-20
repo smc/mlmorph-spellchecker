@@ -16,6 +16,7 @@ Usage
 -----
 
   .. code-block:: python
+
     from mlmorph import Analyser
     from mlmorph_spellchecker import spellcheck, getSuggestions
     analyser = Analyser()
