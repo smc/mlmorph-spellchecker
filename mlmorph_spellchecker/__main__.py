@@ -8,13 +8,15 @@ from mlmorph_spellchecker import spellcheck, getSuggestions
 def main():
     analyser = Analyser()
     parser = ArgumentParser()
-    parser.add_argument('word', metavar="word", help="word to spellcheck")
+    parser.add_argument('words', nargs="*",  help="word to spellcheck")
     args = parser.parse_args()
-    word = args.word.strip()
-    if spellcheck(word, analyser) is True:
-        print('%s ✔️' % (word))
-    else:
-        print('%s ❌ Suggestions: %s' % (word, getSuggestions(word, analyser)))
+    if args.words:
+        for word in args.words:
+          word = word.strip()
+          if spellcheck(word, analyser) is True:
+            print('%s ✔️' % (word))
+          else:
+            print('%s ❌ Suggestions: %s' % (word, getSuggestions(word, analyser)))
 
 
 if __name__ == "__main__":
