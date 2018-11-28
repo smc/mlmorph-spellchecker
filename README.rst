@@ -1,6 +1,14 @@
 Spellchecker based on Malayalam morphology analyser
 ===================================================
 
+
+.. image:: https://img.shields.io/pypi/v/mlmorph-spellchecker.svg
+    :target: https://pypi.python.org/pypi/mlmorph-spellchecker
+    :alt: PyPI Version
+
+
+
+
 This is a Spellchcker for Malayalam language based on `Malayalam morphology analyser - mlmorph`_.
 
 Installation
