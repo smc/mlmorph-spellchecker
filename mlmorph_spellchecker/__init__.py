@@ -25,11 +25,10 @@ class Suggestion:
 
 def getSuggestions(word, analyser):
     # Order of the items in STRATEGIES is important
-    STRATEGIES = ['VisualSimilarity', 'Ykkuka', 'TTaCorrection', 'NtaCorrection', 'MpaCorrection', 'LLaCorrection',
+    STRATEGIES = ['VisualSimilarity', 'PhoneticSimilarity', 'Ykkuka', 'TTaCorrection', 'NtaCorrection', 'MpaCorrection', 'LLaCorrection',
                   'GeminateConsonants', 'ViramaInsertion', 'VowelElongation', 'VowelShortening',
                   'ChilluToConsonantVirama', 'ConsonantViramaToChillu',
-                  'ChilluNormalization',
-                  'ConsonantAspirationCorrection', 'ConsonantVoiceCorrection']
+                  'ChilluNormalization']
 
     weighted_suggestions = {}
     for i in range(len(STRATEGIES)):

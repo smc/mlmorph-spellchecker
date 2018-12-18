@@ -11,6 +11,5 @@ from .lla_correciton import LLaCorrection
 from .vowel_shortening import VowelShortening
 from .chillu_normalization import ChilluNormalization
 from .virama_insertion import ViramaInsertion
-from .consonant_aspiration_correction import ConsonantAspirationCorrection
-from .consonant_voice_correction import ConsonantVoiceCorrection
 from .visual_similarity import VisualSimilarity
+from .phonetic_similarity import PhoneticSimilarity
