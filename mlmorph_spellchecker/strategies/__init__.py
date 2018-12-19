@@ -5,9 +5,7 @@ from .geminate_consonants import GeminateConsonants
 from .insert_y_before_kkuka import Ykkuka
 from .mpa_correction import MpaCorrection
 from .nta_correction import NtaCorrection
-from .tta_correction import TTaCorrection
 from .vowel_elongation import VowelElongation
-from .lla_correciton import LLaCorrection
 from .vowel_shortening import VowelShortening
 from .chillu_normalization import ChilluNormalization
 from .virama_insertion import ViramaInsertion

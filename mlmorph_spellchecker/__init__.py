@@ -25,7 +25,8 @@ class Suggestion:
 
 def getSuggestions(word, analyser):
     # Order of the items in STRATEGIES is important
-    STRATEGIES = ['VisualSimilarity', 'PhoneticSimilarity', 'Ykkuka', 'TTaCorrection', 'NtaCorrection', 'MpaCorrection', 'LLaCorrection',
+    STRATEGIES = ['VisualSimilarity', 'PhoneticSimilarity', 'Ykkuka',
+                  'NtaCorrection', 'MpaCorrection',
                   'GeminateConsonants', 'ViramaInsertion', 'VowelElongation', 'VowelShortening',
                   'ChilluToConsonantVirama', 'ConsonantViramaToChillu',
                   'ChilluNormalization']
