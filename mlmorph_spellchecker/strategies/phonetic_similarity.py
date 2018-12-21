@@ -7,8 +7,11 @@ class PhoneticSimilarity(SuggestionStrategy):
         candidates = []
         for confusable in confusables:
             candidates += self.getCandidatesWithReplacements(word, confusable)
+
+        candidates.append(word.replace('ദ്ധ', 'ധ'))
+        candidates.append(word.replace('ധ','ദ്ധ'))
+        candidates.append(word.replace('ശ്ച', 'ച്ഛ'))
+        candidates.append(word.replace('ച്ഛ', 'ശ്ച'))
+        candidates.append(word.replace('ഷ', 'ക്ഷ'))
+        candidates.append(word.replace('ക്ഷ', 'ഷ')) # പ്രതിക്ഷേധം
         return candidates
-
-
-if __name__ == "__main__":
-    print(PhoneticSimilarity().suggest('സംഗഗാനം'))
