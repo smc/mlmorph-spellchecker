@@ -7,7 +7,25 @@ class GeminateConsonants(SuggestionStrategy):
     adjacent virama പച്ചതത്ത -> പച്ചത്തത്ത
     """
 
-    def suggest(self, word):
+    def degeminate(self, word):
+        candidates = []
+        start = 1
+        for i in range(start, len(word)-2):
+            candidate = list(word)
+            char = candidate[i]
+            next = candidate[i+1]
+            then = candidate[i+2]
+            if char == then:
+                if self.isConsonant(char) and next == '\u0D4D' and self.isConsonant(then):
+                    candidate[i] = char
+                    candidate[i+1] = ''
+                    candidate[i+2] = ''
+                    candidates.append(''.join(candidate))
+                    i = i+2
+
+        return candidates
+
+    def geminate(self, word):
         candidates = []
         start = 1
         for i in range(start, len(word)-1):
@@ -26,7 +44,6 @@ class GeminateConsonants(SuggestionStrategy):
 
         return candidates
 
+    def suggest(self, word):
+        return self.degeminate(word) + self.geminate(word)
 
-if __name__ == "__main__":
-    print(GeminateConsonants().suggest('വരുനു') )
-    print(GeminateConsonants().suggest('കത്തുനു'))
