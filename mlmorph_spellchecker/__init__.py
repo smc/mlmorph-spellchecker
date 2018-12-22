@@ -7,35 +7,34 @@ from __future__ import absolute_import
 
 import abc
 import importlib
-from .strategies import *
+from .suggestion import Suggestion
 
 
-class Suggestion:
-    """
-    Define the interface of interest to clients.
-    Maintain a reference to a Strategy object.
-    """
-
-    def __init__(self, strategy):
-        self._strategy = strategy
-
-    def suggest(self, word):
-        return self._strategy.suggest(word)
+def getStategies():
+    return ['ChilluNormalization',
+            'Ykkuka',
+            'NtaCorrection',
+            'MpaCorrection',
+            'VisualSimilarity',
+            'PhoneticSimilarity',
+            'GeminateConsonants',
+            'ViramaInsertion',
+            'VowelElongation',
+            'VowelShortening',
+            'ChilluToConsonantVirama',
+            'ConsonantViramaToChillu',
+            ]
 
 
 def getSuggestions(word, analyser):
     # Order of the items in STRATEGIES is important
-    STRATEGIES = ['VisualSimilarity', 'PhoneticSimilarity', 'Ykkuka',
-                  'NtaCorrection', 'MpaCorrection',
-                  'GeminateConsonants', 'ViramaInsertion', 'VowelElongation', 'VowelShortening',
-                  'ChilluToConsonantVirama', 'ConsonantViramaToChillu',
-                  'ChilluNormalization']
+    STRATEGIES = getStategies()
 
     weighted_suggestions = {}
-    for i in range(len(STRATEGIES)):
-        strategy = globals()[STRATEGIES[i]]()
-        context = Suggestion(strategy)
-        candidates = context.suggest(word)
+    for class_name in STRATEGIES:
+        strategy = getattr(importlib.import_module(
+            'mlmorph_spellchecker.strategies'), class_name)()
+        candidates = Suggestion(strategy).suggest(word)
         for candidate in candidates:
             if candidate in weighted_suggestions:
                 continue

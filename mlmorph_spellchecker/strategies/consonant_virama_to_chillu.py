@@ -16,7 +16,6 @@ class ConsonantViramaToChillu(SuggestionStrategy):
     }
 
     def suggest(self, word):
-        candidates = []
         start = 2
         for i in range(start, len(word)-1):
             candidate = list(word)
@@ -25,6 +24,4 @@ class ConsonantViramaToChillu(SuggestionStrategy):
                 candidate[i] = self.conversion_map[consvirama]
                 candidate[i+1]=''
                 start = i+2
-                candidates.append(''.join(candidate))
-                continue
-        return candidates
+                yield ''.join(candidate)

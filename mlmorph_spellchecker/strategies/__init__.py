@@ -1,4 +1,3 @@
-from .suggestion_strategy import SuggestionStrategy
 from .chillu_to_virama_form import ChilluToConsonantVirama
 from .consonant_virama_to_chillu import ConsonantViramaToChillu
 from .geminate_consonants import GeminateConsonants

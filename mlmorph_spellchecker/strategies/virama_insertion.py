@@ -7,7 +7,6 @@ class ViramaInsertion(SuggestionStrategy):
     """
 
     def suggest(self, word):
-        candidates = []
         start = 1
         for i in range(start, len(word)-1):
             candidate = list(word)
@@ -19,13 +18,7 @@ class ViramaInsertion(SuggestionStrategy):
                 continue
             if self.isConsonant(char) and self.isConsonant(next):
                 candidate[i] = char + '\u0D4D'
-                candidates.append(''.join(candidate))
+                yield ''.join(candidate)
                 i = i+1
                 continue
-
-        return candidates
-
-
-if __name__ == "__main__":
-    print(ViramaInsertion().suggest('അദധ്വാനം') )
 

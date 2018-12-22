@@ -10,17 +10,17 @@ class ChilluNormalization(SuggestionStrategy):
         candidates = []
         candidate = word.replace('ന്\u200D', 'ൻ')
         if candidate != word:
-            candidates.append(candidate)
+            yield candidate
         candidate = word.replace('ര്\u200D', 'ർ')
         if candidate != word:
-            candidates.append(candidate)
+            yield candidate
         candidate = word.replace('ല്\u200D', 'ൽ')
         if candidate != word:
-            candidates.append(candidate)
+            yield candidate
         candidate = word.replace('ണ്\u200D', 'ൺ')
         if candidate != word:
-            candidates.append(candidate)
+            yield candidate
         candidate = word.replace('ള്\u200D', 'ൾ')
         if candidate != word:
-            candidates.append(candidate)
+            yield candidate
         return candidates

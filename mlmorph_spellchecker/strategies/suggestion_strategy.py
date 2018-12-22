@@ -18,11 +18,9 @@ class SuggestionStrategy(metaclass=abc.ABCMeta):
         return re.compile(r'([ക-ഹ])').search(char) != None
 
     def getCandidatesWithReplacements(self, word, letters):
-        candidates = []
         for replacement, pos in product(letters, range(len(word))):
             s = list(word)
             original = s[pos]
             if original in letters:
                 s[pos] = replacement
-                candidates.append(''.join(s))
-        return candidates
+                yield ''.join(s)

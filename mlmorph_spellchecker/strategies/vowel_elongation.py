@@ -14,7 +14,6 @@ class VowelElongation(SuggestionStrategy):
     }
 
     def suggest(self, word):
-        candidates = []
         start = 1
         for i in range(start, len(word)):
             candidate = list(word)
@@ -22,12 +21,11 @@ class VowelElongation(SuggestionStrategy):
             if char in self.elongation_map:
                 candidate[i] = self.elongation_map[char]
                 start = i+1
-                candidates.append(''.join(candidate))
+                yield ''.join(candidate)
                 continue
             if i == len(word)-1:
                 continue
             next_char = candidate[i+1]
             if self.isConsonant(char) and self.isConsonant(next_char):
                 candidate[i] = char+'ാ'
-                candidates.append(''.join(candidate))
-        return candidates
+                yield ''.join(candidate)

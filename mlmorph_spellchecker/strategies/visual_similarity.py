@@ -27,9 +27,7 @@ class VisualSimilarity(SuggestionStrategy):
     }
 
     def suggest(self, word):
-        candidates = []
         for key in self.conversion_map:
             candidate = word.replace(key, self.conversion_map[key])
             if candidate != word:
-                candidates.append(candidate)
-        return candidates
+                yield candidate

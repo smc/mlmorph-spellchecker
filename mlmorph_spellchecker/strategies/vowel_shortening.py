@@ -14,7 +14,6 @@ class VowelShortening(SuggestionStrategy):
     }
 
     def suggest(self, word):
-        candidates = []
         start = 1
         for i in range(start, len(word)):
             candidate = list(word)
@@ -22,6 +21,5 @@ class VowelShortening(SuggestionStrategy):
             if char in self.shortening_map:
                 candidate[i] = self.shortening_map[char]
                 start = i+1
-                candidates.append(''.join(candidate))
+                yield ''.join(candidate)
                 continue
-        return candidates
