@@ -44,6 +44,16 @@ def getSuggestions(word, analyser):
 
     # Sort by the increasing order of weights
     suggestions = sorted(weighted_suggestions.items(), key=lambda t: t[1])
+    if len(suggestions) == 0:
+        # No suggestions. Try splitting the word after 3rd letter
+        for index in range(3, len(word)-3):
+            lWord = word[:index]
+            rWord = word[index:]
+            lAnalysis = analyser.analyse(lWord, False)
+            rAnalysis = analyser.analyse(rWord, False)
+            if len(lAnalysis) > 0 and len(rAnalysis) > 0:
+                suggestions.append([lWord + ' ' + rWord])
+                break
     # Return the words array
     return [suggestion[0] for suggestion in suggestions]
 
