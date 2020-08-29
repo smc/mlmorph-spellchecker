@@ -7,5 +7,6 @@ setup(
         'console_scripts': [
             'spellchecker = mlmorph_spellchecker.__main__:main'
         ],
-    }
+    },
+    test_suite = 'tests'
 )
