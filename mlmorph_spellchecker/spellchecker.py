@@ -40,7 +40,7 @@ class SpellChecker(object):
             "ConsonantViramaToChillu",
         ]
 
-    def candidates_from_strategies(self, word):
+    def candidates_from_strategies(self, word: str) -> list:
         """
         Generate possible spelling corrections for the provided word using different strategies
 
@@ -57,13 +57,14 @@ class SpellChecker(object):
         weighted_suggestions = {}
         for class_name in STRATEGIES:
             strategy = getattr(
-                importlib.import_module("mlmorph_spellchecker.strategies"), class_name
+                importlib.import_module(
+                    "mlmorph_spellchecker.strategies"), class_name
             )()
             candidates = Suggestion(strategy).suggest(word)
             for candidate in candidates:
                 if candidate in weighted_suggestions:
                     continue
-                weighted_analysis = self.analyser.analyse(candidate, True)
+                weighted_analysis = self.analyser.analyse(candidate, True, False)
                 if len(weighted_analysis) > 0:
                     weighted_suggestions[candidate] = weighted_analysis[0][1]
 
@@ -82,7 +83,7 @@ class SpellChecker(object):
         # Return the words array
         return [suggestion[0] for suggestion in suggestions]
 
-    def is_known_to_analyser(self, word):
+    def is_known_to_analyser(self, word: str) -> bool:
         """
         Check if the given word is known for the mlmorph analyser
 
@@ -91,10 +92,10 @@ class SpellChecker(object):
         Returns:
             boolean: Whether the word is known
         """
-        analysis = self.analyser.analyse(word, False)
+        analysis = self.analyser.analyse(word, False, True )
         return len(analysis) > 0
 
-    def is_common_mistake(self, word):
+    def is_common_mistake(self, word: str) -> bool:
         """
         Check if the given word is a commonly mistaken word based on our
         database of such words
@@ -107,7 +108,7 @@ class SpellChecker(object):
 
         return word in self.common_mistakes
 
-    def spellcheck(self, word):
+    def spellcheck(self, word: str) -> bool:
         """
         Spellcheck the given word
         Args:
@@ -120,7 +121,7 @@ class SpellChecker(object):
             return False
         return self.is_known_to_analyser(word)
 
-    def candidates(self, word):
+    def candidates(self, word: str) -> list:
         """
         Generate possible spelling corrections for the provided word
 
@@ -131,10 +132,13 @@ class SpellChecker(object):
                 The list is sorted in descending order of candidate scrores.\
                 Best candidates are the first candidates in the list
         """
+        if self.spellcheck(word):
+            # Word is spelled correctly
+            return []
         common_mistake = self.is_common_mistake(word)
         if common_mistake:
             return [self.common_mistakes.get(word)]
         return self.candidates_from_strategies(word)
 
-__all__ = ["spellcheck", "candidates"]
 
+__all__ = ["spellcheck", "candidates"]

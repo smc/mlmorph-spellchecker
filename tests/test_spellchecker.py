@@ -16,6 +16,8 @@ class SpellCheckerTests(unittest.TestCase):
         self.assertTrue(spell.spellcheck("മലയാളത്തിലെ"))
         self.assertTrue(spell.spellcheck("മലയാളത്തിന്റെ"))
         self.assertTrue(spell.spellcheck("മലയാളത്തിനായി"))
+        self.assertTrue(spell.spellcheck("ഇലക്ട്രിസിഫിക്കേഷൻ"))
+
 
     def test_mistake(self):
         """ test spell checker mistakes """
@@ -29,6 +31,7 @@ class SpellCheckerTests(unittest.TestCase):
         self.assertEqual(spell.candidates("അങ്ങിനെ"), ["അങ്ങനെ"])
         self.assertEqual(spell.candidates("പീഢനം"), ["പീഡനം"])
         self.assertEqual(spell.candidates("യാദൃശ്ചികം"), ["യാദൃച്ഛികം"])
+        self.assertEqual(spell.candidates("മതാധ്യക്ഷൻ"), [])
 
 
 if __name__ == "__main__":
